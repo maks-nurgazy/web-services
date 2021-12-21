@@ -3,9 +3,11 @@ package com.love2code.example.car;
 import com.love2code.example.exception.CarNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class CarController {
     }
 
     @PostMapping("/cars")
-    public ResponseEntity<Object> createCar(@RequestBody Car newCar) {
+    public ResponseEntity<Object> createCar(@Valid @RequestBody Car newCar) {
         Car car = carService.saveCar(newCar);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(car.getId()).toUri();
 

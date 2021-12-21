@@ -1,11 +1,15 @@
 package com.love2code.example.car;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Car {
     private String id;
+    @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
     private String plateNumber;
+    @Past
     private Date year;
 
     public Car() {
