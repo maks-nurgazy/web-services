@@ -41,4 +41,13 @@ public class CarController {
 
         return ResponseEntity.created(uri).body(car);
     }
+
+    @DeleteMapping("/cars/{id}")
+    public void deleteCar(@PathVariable String id) {
+        Car car = carService.deleteCar(id);
+
+        if (car == null) {
+            throw new CarNotFoundException("id : " + id);
+        }
+    }
 }

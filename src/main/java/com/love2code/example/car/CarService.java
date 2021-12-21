@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -33,5 +34,20 @@ public class CarService {
         cars.add(newCar);
 
         return newCar;
+    }
+
+    public Car deleteCar(String id){
+        Iterator<Car> carIterator = cars.iterator();
+        while (carIterator.hasNext()){
+            Car car = carIterator.next();
+
+            if(car.getId().equals(id)){
+                carIterator.remove();
+
+                return car;
+            }
+        }
+
+        return null;
     }
 }
